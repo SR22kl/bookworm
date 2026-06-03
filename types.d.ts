@@ -1,4 +1,24 @@
 import { UploadSchema } from "@/lib/zod";
+import { PLANS, PlanType } from "@/lib/subscription-constants";
+
+//DATABASE MODELS
+
+export interface IBook extends Document {
+  _id: string;
+  clerkId: string;
+  title: string;
+  slug: string;
+  author: string;
+  persona?: string;
+  fileURL: string;
+  fileBlobKey: string;
+  coverURL: string;
+  coverBlobKey?: string;
+  fileSize: number;
+  totalSegments: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
 export interface IBookSegment extends Document {
   clerkId: string;
@@ -23,9 +43,7 @@ export interface IVoiceSession extends Document {
   updatedAt: Date;
 }
 
-// ============================================
 // FORM & INPUT TYPES
-// ============================================
 
 export type BookUploadFormValues = z.infer<typeof UploadSchema>;
 
