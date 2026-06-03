@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^7.4.2",
+    "@clerk/ui": "^1.14.0",
     "@hookform/resolvers": "^5.4.0",
     "@vercel/blob": "^2.4.0",
     "class-variance-authority": "^0.7.1",

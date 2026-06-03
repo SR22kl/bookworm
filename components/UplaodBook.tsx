@@ -72,7 +72,10 @@ const UplaodBook = () => {
       }
 
       const fileTitle = data.title.replace(/\s+/g, "_").toLowerCase();
-      const pdfFile = data.pdfFile[0];
+      const pdfFile = data.pdfFile;
+
+      console.log("pdfFile field:", data.pdfFile);
+      console.log("first file:", data.pdfFile?.[0]);
 
       const parsedPDF = await parsePDFFile(pdfFile);
 
@@ -171,12 +174,12 @@ const UplaodBook = () => {
             {/* 1 PDF File Uplaod */}
             <FileUploader
               control={form.control}
-              name="bookFile"
+              name="pdfFile"
               label="Book PDF File"
               acceptTypes={ACCEPTED_PDF_TYPES}
               icon={Upload}
-              placeholder="Upload your PDF"
-              hint="PDF File (Max 50MB)"
+              placeholder="Click to upload PDF"
+              hint="PDF file (max 50MB)"
               disabled={isSubmitting}
             />
 
@@ -184,14 +187,13 @@ const UplaodBook = () => {
             <FileUploader
               control={form.control}
               name="coverImage"
-              label="Cover Image"
+              label="Cover Image (Optional)"
               acceptTypes={ACCEPTED_IMAGE_TYPES}
               icon={ImageIcon}
-              placeholder="Upload your Cover Image"
-              hint="Image File (Max 10MB)"
+              placeholder="Click to upload cover image"
+              hint="Leave empty to auto-generate from PDF"
               disabled={isSubmitting}
             />
-
             {/* 3 Title Input */}
             <FormField
               control={form.control}

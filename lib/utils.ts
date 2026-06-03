@@ -103,15 +103,18 @@ export async function parsePDFFile(file: File) {
   }
 
   const pdfjsLib = await import("pdfjs-dist");
-  const loadingTask = pdfjsLib.getDocument({
-    data: await file.arrayBuffer(),
-  });
+
+  let loadingTask;
 
   try {
     pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
       "pdfjs-dist/build/pdf.worker.min.mjs",
       import.meta.url,
     ).toString();
+
+    loadingTask = pdfjsLib.getDocument({
+      data: await file.arrayBuffer(),
+    });
 
     const pdfDocument: PDFDocumentProxy = await loadingTask.promise;
 
@@ -170,6 +173,8 @@ export async function parsePDFFile(file: File) {
       }`,
     );
   } finally {
-    await loadingTask.destroy();
+    if (loadingTask) {
+      await loadingTask.destroy();
+    }
   }
 }
