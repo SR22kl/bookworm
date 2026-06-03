@@ -1,4 +1,30 @@
+import { Document, Types } from "mongoose";
+import { ReactNode } from "react";
+import { Control, FieldPath, FieldValues } from "react-hook-form";
+import { LucideIcon } from "lucide-react";
+import z from "zod";
 import { UploadSchema } from "@/lib/zod";
+
+// ============================================
+// DATABASE MODELS
+// ============================================
+
+export interface IBook extends Document {
+  _id: string;
+  clerkId: string;
+  title: string;
+  slug: string;
+  author: string;
+  persona?: string;
+  fileURL: string;
+  fileBlobKey: string;
+  coverURL: string;
+  coverBlobKey?: string;
+  fileSize: number;
+  totalSegments: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
 export interface IBookSegment extends Document {
   clerkId: string;
@@ -90,6 +116,7 @@ export interface FileUploadFieldProps<T extends FieldValues> {
   placeholder: string;
   hint: string;
 }
+import { PLANS, PlanType } from "@/lib/subscription-constants";
 
 export interface SessionCheckResult {
   allowed: boolean;
