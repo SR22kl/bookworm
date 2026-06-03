@@ -137,7 +137,7 @@ const UplaodBook = () => {
       if (book.alreadyExists) {
         toast.info("A book with this title already exists.");
         form.reset();
-        router.push(`/books/${existCheck.book.slug}`);
+        router.push(`/books/${book.data.slug}`);
         return;
       }
 

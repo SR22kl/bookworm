@@ -27,7 +27,6 @@ export function generateSlug(text: string): string {
     .replace(/[\s_]+/g, "-") // Replace spaces and underscores with hyphens
     .replace(/^-+|-+$/g, ""); // Remove leading/trailing hyphens
 }
-}
 
 // Escape regex special characters to prevent ReDoS attacks
 export const escapeRegex = (str: string): string => {
@@ -159,6 +158,10 @@ export async function parsePDFFile(file: File) {
     }
 
     const segments = splitIntoSegments(fullText);
+
+    if (segments.length === 0) {
+      throw new Error("PDF does not contain extractable text");
+    }
 
     return {
       content: segments,
