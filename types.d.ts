@@ -1,13 +1,11 @@
-import { Document, Types } from "mongoose";
-import { ReactNode } from "react";
+import { UploadSchema } from "@/lib/zod";
+import { PLANS, PlanType } from "@/lib/subscription-constants";
 import { Control, FieldPath, FieldValues } from "react-hook-form";
 import { LucideIcon } from "lucide-react";
-import z from "zod";
-import { UploadSchema } from "@/lib/zod";
+import { PLANS, PlanType } from "@/lib/subscription-constants";
+// import z from "zod";
 
-// ============================================
-// DATABASE MODELS
-// ============================================
+//DATABASE MODELS
 
 export interface IBook extends Document {
   _id: string;
@@ -49,9 +47,7 @@ export interface IVoiceSession extends Document {
   updatedAt: Date;
 }
 
-// ============================================
 // FORM & INPUT TYPES
-// ============================================
 
 export type BookUploadFormValues = z.infer<typeof UploadSchema>;
 
@@ -116,7 +112,6 @@ export interface FileUploadFieldProps<T extends FieldValues> {
   placeholder: string;
   hint: string;
 }
-import { PLANS, PlanType } from "@/lib/subscription-constants";
 
 export interface SessionCheckResult {
   allowed: boolean;
