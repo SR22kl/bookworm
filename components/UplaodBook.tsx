@@ -75,7 +75,7 @@ const UplaodBook = () => {
       const pdfFile = data.pdfFile;
 
       console.log("pdfFile field:", data.pdfFile);
-      console.log("first file:", data.pdfFile?.[0]);
+      // console.log("first file:", data.pdfFile?.[0]);
 
       const parsedPDF = await parsePDFFile(pdfFile);
 
@@ -137,7 +137,7 @@ const UplaodBook = () => {
       if (book.alreadyExists) {
         toast.info("A book with this title already exists.");
         form.reset();
-        router.push(`/books/${book.data.slug}`);
+        router.push(`/books/${existCheck.book.slug}`);
         return;
       }
 
