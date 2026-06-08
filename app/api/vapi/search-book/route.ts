@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import mongoose from "mongoose";
 
 import { searchBookSegments } from "@/lib/actions/book.actions";
 
@@ -18,6 +19,7 @@ async function processBookSearch(bookId: unknown, query: unknown) {
     !bookIdStr ||
     bookIdStr === "null" ||
     bookIdStr === "undefined" ||
+    !mongoose.Types.ObjectId.isValid(bookIdStr) ||
     !queryStr
   ) {
     return { result: "Missing bookId or query" };
@@ -59,7 +61,7 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    console.log("Vapi search-book request:", JSON.stringify(body, null, 2));
+    // console.log("Vapi search-book request:", JSON.stringify(body, null, 2));
 
     // Support multiple Vapi formats
     const functionCall = body?.message?.functionCall;

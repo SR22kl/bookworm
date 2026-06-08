@@ -1,12 +1,15 @@
 import BannerSection from "@/components/BannerSection";
 import BooksSection from "@/components/BooksSection";
-import React from "react";
 
-const page = () => {
+const page = async ({
+  searchParams,
+}: {
+  searchParams?: { search?: string };
+}) => {
   return (
     <>
       <BannerSection />
-      <BooksSection />
+      <BooksSection searchParams={searchParams} />
     </>
   );
 };

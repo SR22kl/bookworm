@@ -2,7 +2,6 @@ import { UploadSchema } from "@/lib/zod";
 import { PLANS, PlanType } from "@/lib/subscription-constants";
 import { Control, FieldPath, FieldValues } from "react-hook-form";
 import { LucideIcon } from "lucide-react";
-import { PLANS, PlanType } from "@/lib/subscription-constants";
 // import z from "zod";
 
 //DATABASE MODELS

@@ -1,5 +1,10 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 
 const BannerSection = () => {
+  const router = useRouter();
+
   return (
     <>
       <main className="wrapper pt-27.5">
@@ -19,7 +24,10 @@ const BannerSection = () => {
                   curated library experience.
                 </p>
               </div>
-              <button className="inline-flex h-14 items-center justify-center rounded-3xl bg-[#1f2937] px-6 text-base font-semibold text-white shadow-[0_10px_30px_rgba(31,41,55,0.18)] transition hover:bg-[#111827]">
+              <button
+                onClick={() => router.push("/books/new")}
+                className="inline-flex h-14 items-center justify-center rounded-3xl bg-[#1f2937] px-6 text-base font-semibold text-white shadow-[0_10px_30px_rgba(31,41,55,0.18)] transition hover:bg-[#111827] cursor-pointer"
+              >
                 + Add new book
               </button>
             </div>

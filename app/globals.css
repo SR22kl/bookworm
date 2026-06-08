@@ -260,7 +260,7 @@
     @apply border border-[#e7d8ba] bg-[#f5ead5];
   }
 
-   /* ===========================================
+  /* ===========================================
      BANNER COMPONENT
      =========================================== */
 
@@ -570,16 +570,38 @@
     @apply font-normal text-sm text-[#222c37] leading-5;
   }
   .library-search-wrapper {
-    @apply flex items-center bg-white border border-[var(--border-subtle)] rounded-lg overflow-hidden w-full sm:w-80;
+    @apply relative flex items-center w-full sm:w-80
+         bg-white rounded-xl
+         border border-gray-200
+         shadow-sm
+         transition-all duration-200;
+  }
+
+  .library-search-wrapper:focus-within {
+    @apply border-green-300 shadow-md;
+  }
+
+  .library-search-icon {
+    @apply absolute right-5 text-gray-500;
+  }
+
+  .library-search-input {
+    @apply w-auto max-w-full h-12
+         pl-11 pr-4
+         bg-transparent
+         text-sm
+         text-gray-800
+         placeholder:text-gray-400
+         outline-none;
   }
   .library-search-input {
-    @apply flex-1 py-2 px-4 outline-none text-[var(--text-primary)] placeholder:text-[var(--text-muted)];
+    @apply flex-1 py-2 px-4 outline-none text-(--text-primary) placeholder:text-(--text-muted);
   }
   .library-books-grid {
     @apply grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-3 md:gap-x-10 gap-y-7 md:gap-y-9;
   }
   .library-empty-card {
-    @apply bg-[var(--bg-secondary)] rounded-[14px] p-12 max-w-md mx-auto;
+    @apply bg-(--bg-secondary) rounded-[14px] p-12 max-w-md mx-auto;
   }
 
   /* ===========================================

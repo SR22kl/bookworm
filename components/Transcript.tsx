@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, KeyboardEvent } from "react";
 import { Mic } from "lucide-react";
 import { Messages } from "@/types";
 
@@ -23,6 +23,35 @@ const Transcript = ({
         top: scrollRef.current.scrollHeight,
         behavior: "smooth",
       });
+    }
+  };
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (!scrollRef.current) return;
+    const el = scrollRef.current;
+    const amount = 120;
+
+    switch (e.key) {
+      case "ArrowDown":
+        el.scrollBy({ top: amount, behavior: "smooth" });
+        break;
+      case "ArrowUp":
+        el.scrollBy({ top: -amount, behavior: "smooth" });
+        break;
+      case "PageDown":
+        el.scrollBy({ top: el.clientHeight, behavior: "smooth" });
+        break;
+      case "PageUp":
+        el.scrollBy({ top: -el.clientHeight, behavior: "smooth" });
+        break;
+      case "Home":
+        el.scrollTo({ top: 0, behavior: "smooth" });
+        break;
+      case "End":
+        el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
+        break;
+      default:
+        break;
     }
   };
 
@@ -50,7 +79,11 @@ const Transcript = ({
   return (
     <div
       ref={scrollRef}
-      className="transcript-messages overflow-y-auto pr-2 flex-1"
+      tabIndex={0}
+      onKeyDown={(e) => handleKeyDown(e)}
+      role="region"
+      aria-label="Transcript messages"
+      className="transcript-messages overflow-y-auto pr-2 flex-1 max-h-[60vh] focus:outline-none"
     >
       {messages.map((message, index) => (
         <div

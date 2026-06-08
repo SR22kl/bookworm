@@ -15,6 +15,7 @@ import {
 const navItems = [
   { label: "Library", href: "/" },
   { label: "Add New", href: "/books/new" },
+  { label: "Pricing", href: "/subscriptions" },
 ];
 
 const Navbar = () => {
@@ -50,7 +51,7 @@ const Navbar = () => {
             alt="bookWorm"
             width={100}
             height={90}
-            className="w-auto h-auto mt-2"
+            className="w-auto h-auto mt-2 hover:hue-rotate-60 transition-all duration-300 ease-out"
           />
           <span className="logo-text -ml-8">bookWorm</span>
         </Link>

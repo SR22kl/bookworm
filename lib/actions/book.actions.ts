@@ -7,6 +7,7 @@ import Book from "@/database/models/bookModel";
 import BookSegment from "@/database/models/bookSegModel";
 import mongoose from "mongoose";
 import { getUserPlan } from "@/lib/subscriptionServer";
+import { revalidatePath } from "next/cache";
 
 export const getAllBooks = async (search?: string) => {
   try {
@@ -96,6 +97,10 @@ export const createBook = async (data: CreateBook) => {
 
     const bookCount = await Book.countDocuments({ clerkId: userId });
 
+    // console.log("plan:", plan);
+    // console.log("limits:", limits);
+    // console.log("bookCount:", bookCount);
+
     if (bookCount >= limits.maxBooks) {
       const { revalidatePath } = await import("next/cache");
       revalidatePath("/");
@@ -127,6 +132,26 @@ export const createBook = async (data: CreateBook) => {
     };
   }
 };
+
+// export const canCreateBook = async () => {
+//   await connectToDatabase();
+
+//   const { userId } = await auth();
+
+//   const plan = await getUserPlan();
+//   const limits = PLAN_LIMITS[plan];
+
+//   const bookCount = await Book.countDocuments({
+//     clerkId: userId,
+//   });
+
+//   return {
+//     allowed: bookCount < limits.maxBooks,
+//     plan,
+//     limit: limits.maxBooks,
+//     currentCount: bookCount,
+//   };
+// };
 
 export const getBookBySlug = async (slug: string) => {
   try {
