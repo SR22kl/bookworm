@@ -2,11 +2,18 @@
 
 import { useVapi } from "@/hooks/useVapi";
 import { IBook } from "@/types";
+import { PlanLimits } from "@/lib/subscription-constants";
 import { MicOff, Mic } from "lucide-react";
 import Image from "next/image";
 import Transcript from "./Transcript";
 
-const VapiControls = ({ book }: { book: IBook }) => {
+const VapiControls = ({
+  book,
+  initialLimits,
+}: {
+  book: IBook;
+  initialLimits?: PlanLimits;
+}) => {
   const {
     status,
     isActive,
@@ -14,11 +21,12 @@ const VapiControls = ({ book }: { book: IBook }) => {
     currentMessage,
     currentUserMessage,
     duration,
+    maxDurationSeconds,
     limitError,
     start,
     stop,
-    clearErrors,
-  } = useVapi(book);
+    clearError,
+  } = useVapi(book, initialLimits);
 
   const formatDuration = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
@@ -113,13 +121,26 @@ const VapiControls = ({ book }: { book: IBook }) => {
               <div className="vapi-status-indicator">
                 <span className="vapi-status-text">
                   {formatDuration(duration)}/
-                  {/* {formatDuration(maxDurationSeconds)} */}
+                  {formatDuration(maxDurationSeconds)}
                 </span>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Error Banner */}
+      {limitError && (
+        <div className="vapi-error-banner rounded-xl p-4 bg-red-50 border border-red-200 text-red-800 flex items-center justify-between">
+          <p>{limitError}</p>
+          <button
+            onClick={clearError}
+            className="text-red-600 hover:text-red-800 font-medium"
+          >
+            Dismiss
+          </button>
+        </div>
+      )}
 
       {/* Transcript Area */}
       <div className="vapi-transcript-wrapper rounded-xl min-h-100 bg-white shadow-(--shadow-soft-lg) flex flex-col items-center justify-center">

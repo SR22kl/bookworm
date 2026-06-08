@@ -3,6 +3,7 @@
 import { connectToDatabase } from "@/database/mongoose";
 import { StartSessionResult, EndSessionResult } from "@/types";
 import VoiceSession from "@/database/models/voiceSessionModel";
+import mongoose from "mongoose";
 
 import { getCurrentBillingPeriodStart } from "@/lib/subscription-constants";
 
@@ -11,6 +12,21 @@ export const startVoiceSession = async (
   bookId: string,
 ): Promise<StartSessionResult> => {
   try {
+    // Validate inputs
+    if (!clerkId?.trim()) {
+      return {
+        success: false,
+        error: "Invalid user ID",
+      };
+    }
+
+    if (!bookId?.trim() || !mongoose.Types.ObjectId.isValid(bookId)) {
+      return {
+        success: false,
+        error: "Invalid book ID",
+      };
+    }
+
     await connectToDatabase();
 
     // Limits/Plan to see whether a session can be started
@@ -41,6 +57,21 @@ export const endVoiceSession = async (
   durationSeconds: number,
 ): Promise<EndSessionResult> => {
   try {
+    // Validate inputs
+    if (!sessionId?.trim() || !mongoose.Types.ObjectId.isValid(sessionId)) {
+      return {
+        success: false,
+        error: "Invalid session ID",
+      };
+    }
+
+    if (durationSeconds < 0) {
+      return {
+        success: false,
+        error: "Duration cannot be negative",
+      };
+    }
+
     await connectToDatabase();
 
     const result = await VoiceSession.findByIdAndUpdate(sessionId, {

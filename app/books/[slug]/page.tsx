@@ -1,8 +1,9 @@
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft} from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { getBookBySlug } from "@/lib/actions/book.actions";
+import { getPlanLimits } from "@/lib/subscriptionServer";
 import VapiControls from "@/components/VapiControls";
 
 const BookDetailsPage = async ({
@@ -26,21 +27,22 @@ const BookDetailsPage = async ({
   }
 
   const book = result.data;
+  const initialLimits = await getPlanLimits();
 
   return (
     <div className="book-page-container min-h-screen bg-background pt-20 pb-12">
       {/* Floating Back Button */}
       <Link
         href="/"
-        className="back-btn-floating fixed top-24 left-6 z-40 w-12 h-12 rounded-full bg-white border border-(--border-medium) shadow-(--shadow-soft-lg) flex items-center justify-center hover:shadow-(--shadow-soft-lg) transition-all"
+        className="fixed top-24 left-6 z-40 w-12 h-12 rounded-full bg-white border border-(--border-medium) shadow-(--shadow-soft-lg) flex items-center justify-center hover:shadow-(--shadow-soft-lg) transition-all"
       >
-        <ArrowLeft className="w-5 h-5 text-(--text-primary)" />
+        <ArrowLeft className="w-5 h-5 hover:-translate-x-1.5 transition-all duration-300 ease-in-out text-(--text-primary)" />
       </Link>
 
       {/* Main Container */}
       <div className="max-w-4xl mx-auto px-4 space-y-8">
         {/* VAPI Controls */}
-        <VapiControls book={book} />
+        <VapiControls book={book} initialLimits={initialLimits} />
       </div>
     </div>
   );
