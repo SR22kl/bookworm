@@ -55,6 +55,9 @@ const Transcript = ({
       default:
         handled = false;
     }
+    if (handled) {
+      e.preventDefault();
+    }
   };
 
   useEffect(() => {
