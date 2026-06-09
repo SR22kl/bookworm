@@ -5,11 +5,11 @@ Upload PDFs, search book content, and chat with your books using voice-powered A
 
 ## Preview
 
-![Preview 1](./preview/preview%201.png)
-![Preview 2](./preview/preview2.png)
+![Preview 1](./preview/preview-1.png)
+![Preview 4](./preview/preview%204.png)
 
 ![Preview 3](./preview/preview3.png)
-![Preview 4](./preview/preview%204.png)
+![Preview 2](./preview/preview2.png)
 
 ## Overview
 
