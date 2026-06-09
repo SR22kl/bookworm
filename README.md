@@ -37,82 +37,85 @@ Upload PDFs, search book content, and chat with your books using voice-powered A
 
 ## Project Structure
 
+```text
 bookworm/
-├── app/ # Next.js app routes and pages
-│ ├── (root)/
-│ │ └── page.tsx # Home page
-│ ├── books/
-│ │ ├── [slug]/
-│ │ │ └── page.tsx # Book detail page with VAPI controls
-│ │ ├── new/
-│ │ │ └── page.tsx # Upload new book page
-│ │ ├── subscriptions/
-│ │ │ └── page.tsx # Subscription pricing page
-│ │ ├── sign-in/
-│ │ │ └── [[...sign-in]]/ # Clerk sign-in route
-│ │ │ └── page.tsx
-│ │ ├── sign-up/
-│ │ │ └── [[...sign-up]]/ # Clerk sign-up route
-│ │ │ └── page.tsx
-│ │ ├── api/
-│ │ │ ├── upload/
-│ │ │ │ └── route.ts # Blob upload API route
-│ │ │ └── vapi/
-│ │ │ └── search-book/
-│ │ │ └── route.ts # VAPI helper route
-│ │ └── layout.tsx # Root layout with Clerk provider
-├── components/ # Reusable UI components
-│ ├── BannerSection.tsx
-│ ├── BookCard.tsx
-│ ├── BookSearchBar.tsx
-│ ├── BooksSection.tsx
-│ ├── FileUploader.tsx
-│ ├── LoadingOverlay.tsx
-│ ├── Navbar.tsx
-│ ├── Transcript.tsx
-│ ├── UplaodBook.tsx
-│ ├── VapiControls.tsx
-│ ├── VoiceSelector.tsx
-│ └── ui/
-│ ├── button.tsx
-│ ├── form.tsx
-│ ├── input.tsx
-│ ├── label.tsx
-│ ├── radio-group.tsx
-│ └── sonner.tsx
-├── database/ # MongoDB connection and models
-│ ├── mongoose.ts
-│ └── models/
-│ ├── bookModel.ts
-│ ├── bookSegModel.ts
-│ └── voiceSessionModel.ts
-├── hooks/ # Custom React hooks
-│ ├── draft.ts
-│ ├── useSubscription.ts
-│ └── useVapi.ts
-├── lib/ # Shared utils and actions
-│ ├── actions/
-│ │ ├── book.actions.ts
-│ │ └── session.actions.ts
-│ ├── constants.ts
-│ ├── subscriptionServer.ts
-│ ├── types.ts
-│ ├── utils.ts
-│ └── zod.ts
-├── preview/ # Screenshot assets for this README
-│ ├── preview 1.png
-│ ├── preview 4.png
-│ ├── preview2.png
-│ └── preview3.png
+├── .clerk/                       # Clerk auth config
+├── app/                          # Next.js app routes and pages
+│   ├── (root)/
+│   │   └── page.tsx              # Home page
+│   ├── books/
+│   │   ├── [slug]/
+│   │   │   └── page.tsx          # Book detail page with VAPI controls
+│   │   ├── new/
+│   │   │   └── page.tsx          # Upload new book page
+│   │   ├── subscriptions/
+│   │   │   └── page.tsx          # Subscription pricing page
+│   │   ├── sign-in/
+│   │   │   └── [[...sign-in]]/
+│   │   │       └── page.tsx       # Clerk sign-in route
+│   │   ├── sign-up/
+│   │   │   └── [[...sign-up]]/
+│   │   │       └── page.tsx       # Clerk sign-up route
+│   │   ├── api/
+│   │   │   ├── upload/
+│   │   │   │   └── route.ts      # Blob upload API route
+│   │   │   └── vapi/
+│   │   │       └── search-book/
+│   │   │           └── route.ts  # VAPI helper route
+│   │   └── layout.tsx            # Root layout with Clerk provider
+├── components/                   # Reusable UI components
+│   ├── BannerSection.tsx
+│   ├── BookCard.tsx
+│   ├── BookSearchBar.tsx
+│   ├── BooksSection.tsx
+│   ├── FileUploader.tsx
+│   ├── LoadingOverlay.tsx
+│   ├── Navbar.tsx
+│   ├── Transcript.tsx
+│   ├── UplaodBook.tsx
+│   ├── VapiControls.tsx
+│   ├── VoiceSelector.tsx
+│   └── ui/
+│       ├── button.tsx
+│       ├── form.tsx
+│       ├── input.tsx
+│       ├── label.tsx
+│       ├── radio-group.tsx
+│       └── sonner.tsx
+├── database/                     # MongoDB connection and models
+│   ├── mongoose.ts
+│   └── models/
+│       ├── bookModel.ts
+│       ├── bookSegModel.ts
+│       └── voiceSessionModel.ts
+├── hooks/                        # Custom React hooks
+│   ├── draft.ts
+│   ├── useSubscription.ts
+│   └── useVapi.ts
+├── lib/                          # Shared utils and actions
+│   ├── actions/
+│   │   ├── book.actions.ts
+│   │   └── session.actions.ts
+│   ├── constants.ts
+│   ├── subscriptionServer.ts
+│   ├── types.ts
+│   ├── utils.ts
+│   └── zod.ts
+├── preview/                      # Screenshot assets for this README
+│   ├── preview 1.png
+│   ├── preview 4.png
+│   ├── preview2.png
+│   └── preview3.png
 ├── next-env.d.ts
 ├── next.config.ts
+├── package-lock.json
 ├── package.json
 ├── postcss.config.mjs
 ├── proxy.ts
 ├── README.md
-├── tailwind.config.ts
 ├── tsconfig.json
 └── types.d.ts
+```
 
 ## Tech Stack
 
