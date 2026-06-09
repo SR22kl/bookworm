@@ -66,9 +66,11 @@ export const useVapi = (book: IBook, initialLimits?: PlanLimits) => {
   const isStoppingRef = useRef(false);
 
   // Keep refs in sync with latest values for use in callbacks
-  const maxDurationSeconds = limits?.maxDurationPerSession
-    ? limits.maxDurationPerSession * 60
-    : 15 * 60;
+  const maxDurationSeconds =
+    limits?.maxDurationPerSession != null
+      ? limits.maxDurationPerSession * 60
+      : 15 * 60;
+
   const maxDurationRef = useLatestRef(maxDurationSeconds);
   const durationRef = useLatestRef(duration);
   const voice = book.persona || DEFAULT_VOICE;
@@ -107,6 +109,7 @@ export const useVapi = (book: IBook, initialLimits?: PlanLimits) => {
             // Check duration limit
             if (newDuration >= maxDurationRef.current) {
               getVapi().stop();
+              setIsBillingError(true);
               setLimitError(
                 `Session time limit (${Math.floor(
                   maxDurationRef.current / SECONDS_PER_MINUTE,

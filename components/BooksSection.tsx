@@ -2,8 +2,6 @@ import BookCard from "./BookCard";
 import BookSearchBar from "./BookSearchBar";
 import { getAllBooks } from "@/lib/actions/book.actions";
 
-export const dynamic = "force-dynamic";
-
 const BooksSection = async ({
   searchParams,
 }: {

@@ -22,8 +22,6 @@ export const useSubscription = () => {
     user?.publicMetadata?.subscriptionPlan,
     user?.publicMetadata?.activePlan,
     user?.publicMetadata?.planType,
-    user?.privateMetadata?.plan,
-    user?.privateMetadata?.billingPlan,
     user?.unsafeMetadata?.plan,
     user?.unsafeMetadata?.billingPlan,
   ].find((value) => value !== undefined && value !== null);
