@@ -65,10 +65,10 @@ export const endVoiceSession = async (
       };
     }
 
-    if (durationSeconds < 0) {
+    if (!Number.isFinite(durationSeconds) || durationSeconds < 0) {
       return {
         success: false,
-        error: "Duration cannot be negative",
+        error: "Invalid duration! Duration cannot be negative",
       };
     }
 

@@ -34,7 +34,7 @@ const BannerSection = () => {
 
             <div className="hero-illustration">
               <img
-                src="/assets/hero-illustration.png"
+                src="/assets/booktree.png"
                 alt="hero illustration"
                 className="w-full"
               />

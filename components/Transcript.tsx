@@ -31,6 +31,8 @@ const Transcript = ({
     const el = scrollRef.current;
     const amount = 120;
 
+    let handled = true;
+
     switch (e.key) {
       case "ArrowDown":
         el.scrollBy({ top: amount, behavior: "smooth" });
@@ -51,7 +53,7 @@ const Transcript = ({
         el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
         break;
       default:
-        break;
+        handled = false;
     }
   };
 
@@ -80,10 +82,10 @@ const Transcript = ({
     <div
       ref={scrollRef}
       tabIndex={0}
-      onKeyDown={(e) => handleKeyDown(e)}
+      onKeyDown={handleKeyDown}
       role="region"
       aria-label="Transcript messages"
-      className="transcript-messages overflow-y-auto pr-2 flex-1 max-h-[60vh] focus:outline-none"
+      className="transcript-messages overflow-y-auto pr-2 flex-1 max-h-[60vh] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2"
     >
       {messages.map((message, index) => (
         <div

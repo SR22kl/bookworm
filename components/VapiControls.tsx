@@ -6,6 +6,7 @@ import { PlanLimits } from "@/lib/subscription-constants";
 import { MicOff, Mic } from "lucide-react";
 import Image from "next/image";
 import Transcript from "./Transcript";
+import { DEFAULT_VOICE } from "@/lib/constants";
 
 const VapiControls = ({
   book,
@@ -113,7 +114,7 @@ const VapiControls = ({
               {/* Voice Badge */}
               <div className="vapi-status-indicator shadow-(--shadow-soft)">
                 <span className="vapi-status-text">
-                  Voice: {book.persona || "DEFAULT_VOICE"}
+                  Voice: {book.persona || DEFAULT_VOICE}
                 </span>
               </div>
 
@@ -144,7 +145,7 @@ const VapiControls = ({
 
       {/* Transcript Area */}
       <div className="vapi-transcript-wrapper rounded-xl min-h-100 bg-white shadow-(--shadow-soft-lg) flex flex-col items-center justify-center">
-        <div className="ranscript-container min-h-100">
+         <div className="transcript-container min-h-100">
           <Transcript
             messages={messages}
             currentMessage={currentMessage}

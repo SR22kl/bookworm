@@ -134,7 +134,11 @@ const UplaodBook = () => {
       // console.log("createBook result:", book);
 
       if (!book.success) {
-        toast.error((book.error as string) || "Failed to create book.");
+        const errorMessage =
+          typeof book.error === "string"
+            ? book.error
+            : "Failed to create book.";
+        toast.error(errorMessage);
         if (book.isBillingError) {
           router.push("/subscriptions");
         }
